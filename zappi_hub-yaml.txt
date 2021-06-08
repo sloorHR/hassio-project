@@ -1,0 +1,38 @@
+sensor:
+  - platform: rest
+    name: Zappi EVSE
+    resource: https://s9.myenergi.net/cgi-zappi-mode-Z12046306
+    device_class: power
+    scan_interval: 60
+    timeout: 30
+    authentication: digest
+    username: 10425709
+    password: 1483
+    headers:
+      User-Agent: Home Assistant
+      Content-Type: application/json
+      Accept: application/json
+    unit_of_measurement: KWh
+    value_template: >
+      {% if value_json.zappi[0].ectp1 is defined %}
+        {{ value_json.zappi[0].ectp1 }}
+      {% else %}
+        0
+      {% endif %}
+    json_attributes_path: '$.zappi[0]'
+    json_attributes:
+      - dat       # Date (UTC)
+      - tim       # Time (UTC)
+      - ectp1     # Internal CT Value
+      - ectp2     # Grid CT Value
+      - ectp3     # Generation CT Value
+      - ectt1     # Internal CT Name
+      - ectt2     # Grid CT Name
+      - ectt3     # Generation CT Name
+      - frq       # Grid Frequency
+      - vol       # Grid Voltage
+      - zmo       # Zappi Mode
+      - sta       # Zappi Status
+      - pst       # Charge Status
+      - che       # KWh Diverted (This Session)
+      - fwv       # Firmware Version
