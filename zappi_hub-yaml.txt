@@ -6,8 +6,8 @@ sensor:
     scan_interval: 60
     timeout: 30
     authentication: digest
-    username: 10425709
-    password: 1483
+    username: **********
+    password: ****
     headers:
       User-Agent: Home Assistant
       Content-Type: application/json
