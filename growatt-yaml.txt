@@ -1,4 +1,0 @@
-sensor:
-  - platform: growatt_server
-    username: rslootweg
-    password: 19Eekhoorn63
